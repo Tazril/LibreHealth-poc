@@ -6,25 +6,27 @@ Name : Direct Scrape -> Download csv file directly
 @author: taz
 """
 
-from bs4 import BeautifulSoup
-import requests
 import pandas as pd
 
 def scrape_data():
     
     csv_url = 'https://www.atlanticare.org/assets/images/services/price-transparency/2019finalpricetransparencyforjan1.csv'
-    
-    csv_file = requests.get(csv_url)
-    
-    with open('main.csv','w') as f:
-        f.write(csv_file.text)
-    
-    df = pd.read_csv('main.csv')
-    
+  
+    # Convert to Dataframe    
+    df = pd.read_csv(csv_url)
+    # Save original
+    try:
+        df.to_csv('main.csv')
+    except Exception as e:
+        print('Error Writing file: {}'.format(e))
+    # Rename columns
     df = df.rename(columns={'DESCRIPTION':'description','CHARGE':'charge'})
-    
-    df.to_csv('charges.csv')
-    
+    # Save standard
+    try:
+        df.to_csv('charges.csv')
+    except Exception as e:
+        print('Error Writing file: {}'.format(e))
+    # return html response    
     return df.to_html()
 
 

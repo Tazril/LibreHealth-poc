@@ -27,7 +27,7 @@ ser.to_csv('Available Procedures.csv',index=False)
 from fuzzywuzzy import process
 
 # Import chargemaster csv file as pandas DataFrame
-df = pd.read_excel('test/HCMC.xlsx')
+df = pd.read_excel('../test/HCMC.xlsx')
 # Take 'Item Description' Series of the DataFrame 
 description_list = df['Item Description']
 
