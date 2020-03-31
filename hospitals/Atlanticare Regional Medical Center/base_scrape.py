@@ -10,19 +10,22 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 
-with open('link.txt') as f:
-    csv_url = f.readline().split('=')[-1]
-
-csv_file = requests.get(csv_url)
-
-with open('main.csv','w') as f:
-    f.write(csv_file.text)
-
-df = pd.read_csv('main.csv')
-
-df = df.rename(columns={'DESCRIPTION':'description','CHARGE':'charge'})
-
-df.to_csv('charges.csv')
+def scrape_data():
+    
+    csv_url = 'https://www.atlanticare.org/assets/images/services/price-transparency/2019finalpricetransparencyforjan1.csv'
+    
+    csv_file = requests.get(csv_url)
+    
+    with open('main.csv','w') as f:
+        f.write(csv_file.text)
+    
+    df = pd.read_csv('main.csv')
+    
+    df = df.rename(columns={'DESCRIPTION':'description','CHARGE':'charge'})
+    
+    df.to_csv('charges.csv')
+    
+    return df.to_html()
 
 
 # Query any procedure 
