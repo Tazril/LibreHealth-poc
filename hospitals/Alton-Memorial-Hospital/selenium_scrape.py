@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 import time
 
 def scrape_data_js(pages=2**30):
-    driver = webdriver.Firefox( log_path='tmp/geckodriver.log')
+    driver = webdriver.Firefox(log_path='/tmp/geckodriver.log')
 
     # Scrape data upto pages
     page_id = 1
