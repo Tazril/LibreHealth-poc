@@ -10,6 +10,9 @@ from bs4 import BeautifulSoup
 import time
 
 def scrape_data_js(pages=2**30):
+    import logging
+    from selenium.webdriver.remote.remote_connection import LOGGER
+    LOGGER.setLevel(logging.WARNING)
     driver = webdriver.Firefox()
 
     # Scrape data upto pages
@@ -47,4 +50,4 @@ def scrape_data_js(pages=2**30):
 
 
 if __name__ == '__main__':
-    print(scrape_data_js(2))
+    print(scrape_data_js(1))

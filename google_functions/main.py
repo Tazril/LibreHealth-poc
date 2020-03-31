@@ -7,18 +7,18 @@ Name: Simple Dictionary for Testing
 
 # Simple Dictionary
 
-from bs4 import BeautifulSoup
 import requests
 
 
 def scrape_csv(request):
-	url = "https://raw.githubusercontent.com/Tazril/LibreHealth-poc/master/hospitals/Atlanticare%20Regional%20Medical%20Center/base_scrape.py"
-	source = requests.get(url).text
-	exec(source)
-	return scrape_data()
+    url = "https://raw.githubusercontent.com/Tazril/LibreHealth-poc/master/hospitals/Atlanticare%20Regional%20Medical%20Center/base_scrape.py"
+    source = requests.get(url).text
+    exec(source, globals())
+    return scrape_data()
 
 def scrape_js(request):
-	url = "https://raw.githubusercontent.com/Tazril/LibreHealth-poc/master/hospitals/Alton-Memorial-Hospital/selenium_scrape.py"
-	source = requests.get(url).text
-	exec(source)
-	return scrape_data_js(2)
+    url = "https://raw.githubusercontent.com/Tazril/LibreHealth-poc/master/hospitals/Alton-Memorial-Hospital/selenium_scrape.py"
+    source = requests.get(url).text
+    exec(source, globals())
+    return scrape_data_js(2)
+
